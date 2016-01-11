@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Matkakortti</string>
+    <string name="dialog_language_title">Välj språk</string>
+    <string name="icon_settings_title">Inställningar</string>
+    <string name="icon_help_title">Info</string>
+    <string name="img_desc">Desc</string>
+    <string name="dialog_help_title">Poikkeusinfo v1.0</string>
+    <string name="dialog_help_msg">Hjälp text här</string>
+
+
+    <string-array name="languages_array">
+        <item>In English</item>
+        <item>Svenska</item>
+        <item>Suomeksi</item>
+    </string-array>
+
+
+    <string name="zone">Zon</string>
+    <string name="status">gäller tills vidare</string>
+    <string name="arrow">&#160;&#8212;></string>
+    <string name="hasNotBegun">Har inte börjat</string>
+    <string name="isValid">I kraft</string>
+    <string name="noLongerValid">Har upphört att gälla</string>
+    <string name="periodTrip">Periodresa</string>
+    <string name="ticket">Värdebiljett</string>
+    <string name="pieces">st</string>
+    <string name="price">Pris</string>
+    <string name="ticketStatus">Biljettens status:&#160;</string>
+    <string name="unused">Inte använd</string>
+    <string name="ticketValidity">Biljetten är giltig från den första användningen.</string>
+    <string name="notStarted">Har ännu inte börjatt\n\n</string>
+    <string name="validUntil">I kraft:&#160;</string>
+    <string name="groupSize">Gruppens storlek:&#160;</string>
+    <string name="validityTime">Giltighet:&#160;</string>
+    <string name="min">min</string>
+    <string name="h">h</string>
+    <string name="days">dagar</string>
+    <string name="valid">I kraft:\n</string>
+    <string name="daysLeft">&#160;dagar kvar\n</string>
+    <string name="titlePeriod">Period</string>
+    <string name="titleWorth">Värde</string>
+    <string name="titlePast">Senaste resor</string>
+    <string name="ticketWorth">Värde på kortet:&#160;</string>
+
+</resources>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Matkakortti</string>
+    <string name="dialog_language_title">Valitse kieli</string>
+    <string name="icon_settings_title">Asetukset</string>
+    <string name="icon_help_title">Tietoja</string>
+    <string name="img_desc">Desc</string>
+    <string name="dialog_help_title">Poikkeusinfo v1.0</string>
+    <string name="dialog_help_msg">Ohje teksti tähän</string>
+
+
+    <string-array name="languages_array">
+        <item>In English</item>
+        <item>Svenska</item>
+        <item>Suomeksi</item>
+    </string-array>
+
+
+    <string name="z0">Ei määritelty</string>
+    <string name="z1">Helsinki</string>
+    <string name="z2">Espoo</string>
+    <string name="z4">Vantaa</string>
+    <string name="z5">Seutu</string>
+    <string name="z6">Kirkkonummi</string>
+    <string name="z7">Vihti</string>
+    <string name="z8">Nurmijärvi</string>
+    <string name="z9">Kerava-Sipoo</string>
+    <string name="z10">Sipoo</string>
+    <string name="z14">Lähialue</string>
+    <string name="z15">Koko alue</string>
+
+    <string name="v0">Ei määritelty</string>
+    <string name="v1">Bussi</string>
+    <string name="v5">Raitiovaunu</string>
+    <string name="v6">Metro</string>
+    <string name="v7">Juna</string>
+    <string name="v8">Lautta</string>
+    <string name="v9">U-linja</string>
+
+
+    <string name="zone">Vyöhyke</string>
+    <string name="status">Voimassa toistaiseksi</string>
+    <string name="arrow">&#160;&#8212;></string>
+    <string name="hasNotBegun">Ei ole alkanut</string>
+    <string name="isValid">Voimassa</string>
+    <string name="noLongerValid">Ei enää voimassa</string>
+    <string name="periodTrip">Kausimatka</string>
+    <string name="ticket">Arvolippu</string>
+    <string name="pieces">pcs</string>
+    <string name="price">Hinta</string>
+    <string name="ticketStatus">Lipun tila:&#160;</string>
+    <string name="unused">Ei käytetty</string>
+    <string name="ticketValidity">Lippu on voimassa ensimmäisestä käytöstä.</string>
+    <string name="notStarted">Ei ole vielä alkanut\n\n</string>
+    <string name="validUntil">Voimassa:&#160;</string>
+    <string name="groupSize">Ryhmän koko:&#160;</string>
+    <string name="validityTime">Voimassaoloaika:&#160;</string>
+    <string name="min">min</string>
+    <string name="h">h</string>
+    <string name="days">päiviä</string>
+    <string name="valid">Voimassa:\n</string>
+    <string name="daysLeft">&#160;päivää jäljellä\n</string>
+    <string name="titlePeriod">Kausi</string>
+    <string name="titleWorth">Arvo</string>
+    <string name="titlePast">Edelliset matkat</string>
+    <string name="ticketWorth">Kortilla arvoa:&#160;</string>
+
+</resources>
