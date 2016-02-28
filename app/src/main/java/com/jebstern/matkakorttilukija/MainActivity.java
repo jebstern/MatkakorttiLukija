@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private String[][] mTechLists;
 
     // MATKAKORTTI VARIABLES
-    private TextView tv_title, tv_content_history, tv_content_kausi, tv_content_arvo, tv_eticket_date, tv_eticket_validity;
+    private TextView tv_content_history, tv_content_kausi, tv_content_arvo, tv_eticket_validity;
     private NfcAdapter mNfcAdapter;
     private static byte[] selectHslCommand = {(byte) 0x90, (byte) 0x5A, (byte) 0x00, (byte) 0x00, (byte) 0x03, (byte) 0x11, (byte) 0x20, (byte) 0xEF, (byte) 0x00};
     private static byte[] readAppinfoCommand = {(byte) 0x90, (byte) 0xBD, (byte) 0x00, (byte) 0x00, (byte) 0x07, (byte) 0x08, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x0B, (byte) 0x00, (byte) 0x00, (byte) 0x00};
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private static byte[] MORE_DATA = {(byte) 0x91, (byte) 0xAF};
 
     Tag tag;
-    String title_kausi, content_kausi, title_historia, content_history, content_muu, content_arvo, eticket_date, eticket_validity;
+    String content_kausi, content_history, content_arvo, eticket_validity;
 
 
     @Override
@@ -98,9 +98,9 @@ public class MainActivity extends AppCompatActivity {
         if (!mNfcAdapter.isEnabled()) {
 
             AlertDialog.Builder alertbox = new AlertDialog.Builder(MainActivity.this);
-            alertbox.setTitle("Huomio");
-            alertbox.setMessage("NFC ei ole päällä. Haluatko siirtyä asetuksiin?");
-            alertbox.setPositiveButton("SIIRRY", new DialogInterface.OnClickListener() {
+            alertbox.setTitle(getApplicationContext().getString(R.string.error_dialog_nfc_title));
+            alertbox.setMessage(getApplicationContext().getString(R.string.error_dialog_nfc_message));
+            alertbox.setPositiveButton(getApplicationContext().getString(R.string.error_dialog_nfc_btn_yes), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             });
-            alertbox.setNegativeButton("PERUUTA", new DialogInterface.OnClickListener() {
+            alertbox.setNegativeButton(getApplicationContext().getString(R.string.error_dialog_nfc_btn_no), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                 }
@@ -129,9 +129,9 @@ public class MainActivity extends AppCompatActivity {
         IntentFilter ndef = new IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED);
         String mimeType = "text/plain";
         try {
-            ndef.addDataType("text/plain");
+            ndef.addDataType(mimeType);
         } catch (IntentFilter.MalformedMimeTypeException e) {
-            throw new RuntimeException("ndef.addDataType(\"+mimeType+\") failed", e);
+            throw new RuntimeException("ndef.addDataType(" + mimeType + ") failed", e);
         }
         IntentFilter td = new IntentFilter(NfcAdapter.ACTION_TAG_DISCOVERED);
         mFilters = new IntentFilter[]{ndef, td};
@@ -274,7 +274,6 @@ public class MainActivity extends AppCompatActivity {
 
             byte[] appInfo, periodPass, storedValue, eTicket, history, selection;
             byte[] hist1, hist2 = new byte[2];
-            String retStr = null;
 
             if (ISOCard != null) {
                 try {
@@ -328,10 +327,7 @@ public class MainActivity extends AppCompatActivity {
                         eticket_validity = helpperi.getETicketValidity();
 
 
-                    } else {
-                        card = new TravelCard(TravelCard.STATUS_NO_HSL_CARD);
                     }
-
 
                 } catch (IOException e) {
                     e.printStackTrace();

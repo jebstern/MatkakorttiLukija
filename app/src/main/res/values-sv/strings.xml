@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Matkakortti</string>
+    <string name="app_name">Resekort läsare</string>
     <string name="dialog_language_title">Välj språk</string>
     <string name="icon_settings_title">Inställningar</string>
     <string name="icon_help_title">Info</string>
-    <string name="img_desc">Desc</string>
-    <string name="dialog_help_title">Matkakortti Lukija</string>
-    <string name="dialog_help_msg">Hjälp text här</string>
+    <string name="img_desc">Nomral bild</string>
+    <string name="dialog_help_title">Resekort läsare</string>
+    <string name="dialog_help_msg">Information kommer här</string>
 
 
     <string-array name="languages_array">
@@ -18,7 +18,7 @@
 
 
     <string name="zone">Zon</string>
-    <string name="status">gäller tills vidare</string>
+    <string name="status">Gäller tills vidare</string>
     <string name="arrow">&#160;&#8212;></string>
     <string name="hasNotBegun">Har inte börjat</string>
     <string name="isValid">I kraft</string>
@@ -30,7 +30,7 @@
     <string name="ticketStatus">Biljettens status:&#160;</string>
     <string name="unused">Inte använd</string>
     <string name="ticketValidity">Biljetten är giltig från den första användningen.</string>
-    <string name="notStarted">Har ännu inte börjatt\n\n</string>
+    <string name="notStarted">Har ännu inte börjat\n\n</string>
     <string name="validUntil">I kraft:&#160;</string>
     <string name="groupSize">Gruppens storlek:&#160;</string>
     <string name="validityTime">Giltighet:&#160;</string>
@@ -43,5 +43,29 @@
     <string name="titleWorth">Värde</string>
     <string name="titlePast">Senaste resor</string>
     <string name="ticketWorth">Värde på kortet:&#160;</string>
+    <string name="action_settings">Inställningar</string>
+    <string name="v1">Bus</string>
+    <string name="v5">Spårvagn</string>
+    <string name="v6">Metro</string>
+    <string name="v7">Tåg</string>
+    <string name="v8">Färja</string>
+    <string name="v9">U-linje</string>
+    <string name="v0">Ej definierat</string>
+    <string name="z0">Ej definierat</string>
+    <string name="z1">Helsingfors</string>
+    <string name="z10">Sibbo</string>
+    <string name="z14">Närområde</string>
+    <string name="z15">Hela området</string>
+    <string name="z2">Esbo</string>
+    <string name="z4">Vanda</string>
+    <string name="z5">Region</string>
+    <string name="z6">Kyrkslätt</string>
+    <string name="z7">Vichtis</string>
+    <string name="z8">Nurmijärvi</string>
+    <string name="z9">Kervo-Sibbo</string>
+    <string name="error_dialog_nfc_title">NFC inaktiverad</string>
+    <string name="error_dialog_nfc_message">NFC är ej aktiverad. Gå till inställningar?</string>
+    <string name="error_dialog_nfc_btn_no">STÄNG</string>
+    <string name="error_dialog_nfc_btn_yes">OK</string>
 
 </resources>

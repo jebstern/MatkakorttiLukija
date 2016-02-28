@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Matkakortti</string>
+    <string name="app_name">Matkakortti Lukija</string>
     <string name="dialog_language_title">Valitse kieli</string>
     <string name="icon_settings_title">Asetukset</string>
     <string name="icon_help_title">Tietoja</string>
-    <string name="img_desc">Desc</string>
+    <string name="img_desc">Normikuva</string>
     <string name="dialog_help_title">Matkakortti Lukija</string>
-    <string name="dialog_help_msg">Ohje teksti tähän</string>
+    <string name="dialog_help_msg">Ohje tulosssa&#8230;</string>
 
 
     <string-array name="languages_array">
@@ -47,7 +47,7 @@
     <string name="noLongerValid">Ei enää voimassa</string>
     <string name="periodTrip">Kausimatka</string>
     <string name="ticket">Arvolippu</string>
-    <string name="pieces">pcs</string>
+    <string name="pieces">kpl</string>
     <string name="price">Hinta</string>
     <string name="ticketStatus">Lipun tila:&#160;</string>
     <string name="unused">Ei käytetty</string>
@@ -65,7 +65,11 @@
     <string name="titleWorth">Arvo</string>
     <string name="titlePast">Edelliset matkat</string>
     <string name="ticketWorth">Kortilla arvoa:&#160;</string>
-
+    <string name="action_settings">Asetukset</string>
+    <string name="error_dialog_nfc_message">NFC ei ole päällä. Siirry asetuksiin?</string>
+    <string name="error_dialog_nfc_title">NFC pois päältä</string>
+    <string name="error_dialog_nfc_btn_no">PERUUTA</string>
+    <string name="error_dialog_nfc_btn_yes">SIIRRY</string>
 
 
 </resources>
