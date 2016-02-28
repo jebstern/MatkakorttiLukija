@@ -311,7 +311,7 @@ public class Helpperi {
         //If ticket's validity end date was before current date
         else if (periodEndCal.before(currentCal)) {
             //Ticket is used and no longer valid
-            status += app_context.getResources().getString(R.string.valid) + "";
+            status += app_context.getResources().getString(R.string.noLongerValid) + "\n";
 
             //Tell the time when the validity of the ticket will end or has ended
             validityStr += app_context.getResources().getString(R.string.validUntil) + datetimeFormat.format(periodEndCal.getTime());

@@ -12,16 +12,14 @@ import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.nfc.tech.IsoDep;
 import android.nfc.tech.NfcA;
-import android.nfc.tech.NfcF;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -64,16 +62,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Set appropiate language
+        // Set appropriate language
         SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         String language = prefs.getString("language", null);
         if (language != null) {
             myLocale = new Locale(language);
         } else {
-            myLocale = new Locale("fi");
-
+            myLocale = new Locale("fi");  // If firtst time use. default to Finnish
         }
 
+        // Snippet to display correct language
         Resources res = getResources();
         DisplayMetrics dm = res.getDisplayMetrics();
         Configuration conf = res.getConfiguration();
@@ -98,19 +96,42 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "This device doesn't support NFC.", Toast.LENGTH_LONG).show();
         }
         if (!mNfcAdapter.isEnabled()) {
-            Toast.makeText(getApplicationContext(), "NFC IS DISABLED!", Toast.LENGTH_LONG).show();
+
+            AlertDialog.Builder alertbox = new AlertDialog.Builder(MainActivity.this);
+            alertbox.setTitle("Huomio");
+            alertbox.setMessage("NFC ei ole päällä. Haluatko siirtyä asetuksiin?");
+            alertbox.setPositiveButton("SIIRRY", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                        Intent intent = new Intent(Settings.ACTION_NFC_SETTINGS);
+                        startActivity(intent);
+                    } else {
+                        Intent intent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
+                        startActivity(intent);
+                    }
+                }
+            });
+            alertbox.setNegativeButton("PERUUTA", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                }
+            });
+            alertbox.show();
         }
 
-
+        // For foreground intentions, e.g if the user reads the HSL card again while the app is active --> Dont start new activity, refresh current
         handleIntent(getIntent());
 
 
+        // Foreground Dispatch System: allows this activity to intercept an intent and claim priority over other activities that handle the same intent.
         mPendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
         IntentFilter ndef = new IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED);
+        String mimeType = "text/plain";
         try {
-            ndef.addDataType("*/*");    /* TODO: change parameter value! Now it handles all MIME based dispatches. */
+            ndef.addDataType("text/plain");
         } catch (IntentFilter.MalformedMimeTypeException e) {
-            throw new RuntimeException("ndef.addDataType(\"*/*\") failed", e);
+            throw new RuntimeException("ndef.addDataType(\"+mimeType+\") failed", e);
         }
         IntentFilter td = new IntentFilter(NfcAdapter.ACTION_TAG_DISCOVERED);
         mFilters = new IntentFilter[]{ndef, td};
@@ -135,7 +156,6 @@ public class MainActivity extends AppCompatActivity {
                 asyncReader.execute();
             }
         }
-
     }
 
 
@@ -235,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private class ReadHSLCard extends AsyncTask<Void, Void, String> {
+    private class ReadHSLCard extends AsyncTask<Void, Void, Void> {
 
         private IsoDep ISOCard;
 
@@ -250,7 +270,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        protected String doInBackground(Void... params) {
+        protected Void doInBackground(Void... params) {
 
             byte[] appInfo, periodPass, storedValue, eTicket, history, selection;
             byte[] hist1, hist2 = new byte[2];
@@ -308,23 +328,8 @@ public class MainActivity extends AppCompatActivity {
                         eticket_validity = helpperi.getETicketValidity();
 
 
-                        retStr = "Arvoa kortilla: " + helpperi.getCardValue() + "\n----\n"
-                                + helpperi.getETicketValidity() + "\n----\n"
-                                + "boardingVehicle: " + helpperi.getBoardingVehicle() + "\n----\n"
-                                //+ "boardingArea: " + boardingArea + "\n----\n"
-                                + "Viimeksi ladattu kausi: " + helpperi.getLoadedPeriodLength() + " pv\n----\n"
-                                + "Kauden hinta: " + helpperi.getLoadedPeriodPrice() + "\n----\n"
-                                //+ "getLoadedPeriodProduct" + getLoadedPeriodProduct + "\n----\n"
-                                //+ "Viimeksi ladattu arvo:" + Helper.getLoadedValue(getLoadedValue)  + "\n----\n"
-                                + "Arvon osto pvm: " + helpperi.getLoadingDate() + "\n----\n"
-                                //+ "getLoadingDeviceNumber" + getLoadingDeviceNumber + "\n----\n"
-                                //+ "getLoadingOrganizationID" + getLoadingOrganizationID + "\n----\n"
-                                //+ "getLoadingTime" + getLoadingTime + "\n----\n"
-                                + "history:\n" + helpperi.getHistory();
-
                     } else {
                         card = new TravelCard(TravelCard.STATUS_NO_HSL_CARD);
-                        retStr = "No hsl card";
                     }
 
 
@@ -342,11 +347,11 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
-            return retStr;
+            return null;
         }
 
         @Override
-        protected void onPostExecute(String result) {
+        protected void onPostExecute(Void result) {
             tv_content_kausi.setText(content_kausi);
             tv_content_history.setText(content_history);
             tv_content_arvo.setText(content_arvo);

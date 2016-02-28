@@ -62,7 +62,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="Lippu"
+                android:text="@string/ticket"
                 android:textColor="#000"
                 android:textSize="25sp"
                 android:textStyle="bold" />
@@ -71,7 +71,6 @@
                 android:id="@+id/tv_eticket_date"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Ostettu: 27.11.2015 13:45"
                 android:textColor="#000"
                 android:textSize="17sp" />
 

@@ -6,7 +6,7 @@
     <string name="icon_settings_title">Asetukset</string>
     <string name="icon_help_title">Tietoja</string>
     <string name="img_desc">Desc</string>
-    <string name="dialog_help_title">Poikkeusinfo v1.0</string>
+    <string name="dialog_help_title">Matkakortti Lukija</string>
     <string name="dialog_help_msg">Ohje teksti tähän</string>
 
 
@@ -65,5 +65,7 @@
     <string name="titleWorth">Arvo</string>
     <string name="titlePast">Edelliset matkat</string>
     <string name="ticketWorth">Kortilla arvoa:&#160;</string>
+
+
 
 </resources>
