@@ -4,25 +4,32 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * The Convert class contains conversion utilities for hex string and date conversions from the ticket data.
+ * The Utilities class contains conversion utilities for hex string and date conversions from the ticket data.
  */
 
-public class Convert {
+public class Utilities {
 
     /**
      * The en1545 format zero date (1.1.1997) in java Date format (number of milliseconds since 1.1.1970).
      */
-    public static long en1545zeroDate = 852076800000L;
+    private static long en1545zeroDate = 852076800000L;
 
     /**
      * The length of one day in milliseconds.
      */
-    public static long dayInMs = 86400000L;
+    private static long dayInMs = 86400000L;
 
-    /**
-     * The length of one minute in milliseconds.
-     */
-    public static long minuteInMs = 60000L;
+
+    static byte[] selectHslCommand = {(byte) 0x90, (byte) 0x5A, (byte) 0x00, (byte) 0x00, (byte) 0x03, (byte) 0x11, (byte) 0x20, (byte) 0xEF, (byte) 0x00};
+    static byte[] readAppinfoCommand = {(byte) 0x90, (byte) 0xBD, (byte) 0x00, (byte) 0x00, (byte) 0x07, (byte) 0x08, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x0B, (byte) 0x00, (byte) 0x00, (byte) 0x00};
+    static byte[] readPeriodpassCommand = {(byte) 0x90, (byte) 0xBD, (byte) 0x00, (byte) 0x00, (byte) 0x07, (byte) 0x01, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x20, (byte) 0x00, (byte) 0x00, (byte) 0x00};
+    static byte[] readStoredvalueCommand = {(byte) 0x90, (byte) 0xBD, (byte) 0x00, (byte) 0x00, (byte) 0x07, (byte) 0x02, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x0C, (byte) 0x00, (byte) 0x00, (byte) 0x00};
+    static byte[] readETicketCommand = {(byte) 0x90, (byte) 0xBD, (byte) 0x00, (byte) 0x00, (byte) 0x07, (byte) 0x03, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x1A, (byte) 0x00, (byte) 0x00, (byte) 0x00};
+    static byte[] readHistoryCommand = {(byte) 0x90, (byte) 0xBB, (byte) 0x00, (byte) 0x00, (byte) 0x07, (byte) 0x04, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00};
+    static byte[] readNextCommand = {(byte) 0x90, (byte) 0xAF, (byte) 0x00, (byte) 0x00, (byte) 0x00};
+    static byte[] OK = {(byte) 0x91, (byte) 0x00};
+    static byte[] MORE_DATA = {(byte) 0x91, (byte) 0xAF};
+
 
     /**
      * Gets the hex string.
@@ -73,6 +80,10 @@ public class Convert {
      */
     public static Date en5145DateAndTime2JavaDate(short date, short time) {
         Calendar cal = Calendar.getInstance();
+        /*
+      The length of one minute in milliseconds.
+     */
+        long minuteInMs = 60000L;
         int utcOffset = cal.getTimeZone().getOffset(((long) date * dayInMs) + en1545zeroDate + ((long) time * minuteInMs));
         Date utcDate = new Date(((long) date * dayInMs) + en1545zeroDate + ((long) time * minuteInMs) - (long) utcOffset);
 

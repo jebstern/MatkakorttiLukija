@@ -127,7 +127,7 @@ public class eTicket {
         validityArea = (byte) (eTicketData[3] & 0x0F);
 
         short date1 = (short) (((eTicketData[4] & 0xFF) << 6) | ((eTicketData[5] & 0xFC) >>> 2));
-        saleDate = Convert.en5145Date2JavaDate(date1);
+        saleDate = Utilities.en5145Date2JavaDate(date1);
         saleTime = (byte) (((eTicketData[5] & 0x03) << 3) | ((eTicketData[6] & 0xE0) >>> 5));
         groupSize = (byte) ((eTicketData[10] & 0x3E) >>> 1);
         //sale status is relevant only in value tickets on desfire cards
@@ -141,13 +141,13 @@ public class eTicket {
         date1 = (short) (((eTicketData[11 + c] & 0xFF) << 6) | ((eTicketData[12 + c] & 0xFC) >>> 2));
         //read validity start timestamp
         short time1 = (short) (((eTicketData[12 + c] & 0x03) << 9) | ((eTicketData[13 + c] & 0xFF) << 1) | ((eTicketData[14 + c] & 0x80) >>> 7));
-        validityStartDate = Convert.en5145DateAndTime2JavaDate(date1, time1);
+        validityStartDate = Utilities.en5145DateAndTime2JavaDate(date1, time1);
 
         //read validity end datestamp
         date1 = (short) (((eTicketData[14 + c] & 0x7F) << 7) | ((eTicketData[15 + c] & 0xFF) >>> 1));
         //read validity end timestamp
         time1 = (short) (((eTicketData[15 + c] & 0x01) << 10) | ((eTicketData[16 + c] & 0xFF) << 2) | ((eTicketData[17 + c] & 0xC0) >>> 6));
-        validityEndDate = Convert.en5145DateAndTime2JavaDate(date1, time1);
+        validityEndDate = Utilities.en5145DateAndTime2JavaDate(date1, time1);
 
         //validity status is relevant only in value tickets on desfire cards
         validityStatus = (byte) (eTicketData[17 + c] & 0x01);
@@ -156,7 +156,7 @@ public class eTicket {
 
         date1 = (short) (((eTicketData[18 + c] & 0xFF) << 6) | ((eTicketData[19 + c] & 0xFC) >>> 2));
         time1 = (short) (((eTicketData[19 + c] & 0x03) << 9) | ((eTicketData[20 + c] & 0xFF) << 1) | ((eTicketData[21 + c] & 0x80) >>> 7));
-        boardingDate = Convert.en5145DateAndTime2JavaDate(date1, time1);
+        boardingDate = Utilities.en5145DateAndTime2JavaDate(date1, time1);
         boardingVehicle = (short) (((eTicketData[21 + c] & 0x7F) << 7) | (eTicketData[22 + c] & 0xFE) >>> 1);
         boardingLocationNumType = (byte) (((eTicketData[22 + c] & 0x01) << 1) | ((eTicketData[23 + c] & 0x80) >>> 7));
         boardingLocationNum = (short) (((eTicketData[23 + c] & 0x7F) << 7) | ((eTicketData[24 + c] & 0xFE) >>> 1));

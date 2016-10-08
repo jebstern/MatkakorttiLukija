@@ -277,7 +277,7 @@ public class TravelCard {
         //Card number
         byte[] temp = new byte[9];
         System.arraycopy(applicationInformation, 1, temp, 0, 9);
-        applicationInstanceId = Convert.getHexString(temp);
+        applicationInstanceId = Utilities.getHexString(temp);
 
         //card platform type
         platformType = (byte) (applicationInformation[10] & 0xE0);
@@ -297,10 +297,10 @@ public class TravelCard {
         validityArea1 = (byte) (((periodPass[1] & 0x01) << 3) | ((periodPass[2] & 0xE0) >>> 5));
 
         short date1 = (short) (((periodPass[2] & 0x1F) << 9) | ((periodPass[3] & 0xFF) << 1) | ((periodPass[4] & 0x80) >>> 7));
-        periodStartDate1 = Convert.en5145Date2JavaDate(date1);
+        periodStartDate1 = Utilities.en5145Date2JavaDate(date1);
 
         short date2 = (short) (((periodPass[4] & 0x7F) << 7) | ((periodPass[5] & 0xFE) >>> 1));
-        periodEndDate1 = Convert.en5145Date2JavaDate(date2);
+        periodEndDate1 = Utilities.en5145Date2JavaDate(date2);
         //Add time 23:59:59 to date in milliseconds to cover the whole day
         periodEndDate1.setTime(periodEndDate1.getTime() + (24L * 60L * 60L - 1L) * 1000L);
         //store period length
@@ -313,10 +313,10 @@ public class TravelCard {
         validityArea2 = (byte) (((periodPass[7] & 0x01) << 3) | ((periodPass[8] & 0xE0) >>> 5));
 
         date1 = (short) (((periodPass[8] & 0x1F) << 9) | ((periodPass[9] & 0xFF) << 1) | ((periodPass[10] & 0x80) >>> 7));
-        periodStartDate2 = Convert.en5145Date2JavaDate(date1);
+        periodStartDate2 = Utilities.en5145Date2JavaDate(date1);
 
         date2 = (short) (((periodPass[10] & 0x7F) << 7) | ((periodPass[11] & 0xFE) >>> 1));
-        periodEndDate2 = Convert.en5145Date2JavaDate(date2);
+        periodEndDate2 = Utilities.en5145Date2JavaDate(date2);
         //Add time 23:59:59 to date in milliseconds
         periodEndDate2.setTime(periodEndDate2.getTime() + (24L * 60L * 60L - 1L) * 1000L);
 
@@ -327,7 +327,7 @@ public class TravelCard {
         loadedPeriodProduct = (short) (((periodPass[12] & 0xFF) << 6) | ((periodPass[13] & 0xFC) >>> 2));
         date1 = (short) (((periodPass[13] & 0x03) << 12) | ((periodPass[14] & 0xFF) << 4) | ((periodPass[15] & 0xF0) >>> 4));
         short time1 = (short) (((periodPass[15] & 0x0F) << 7) | ((periodPass[16] & 0xFE) >>> 1));
-        periodLoadingDate = Convert.en5145DateAndTime2JavaDate(date1, time1);
+        periodLoadingDate = Utilities.en5145DateAndTime2JavaDate(date1, time1);
         loadedPeriodLength = (short) (((periodPass[16] & 0x01) << 8) | (periodPass[17] & 0xFF));
         loadedPeriodPrice = (int) ((periodPass[18] & 0xFF) << 12) | ((periodPass[19] & 0xFF) << 4) | ((periodPass[20] & 0xF0) >>> 4);
         periodLoadingOrganisation = (short) (((periodPass[20] & 0x0F) << 10) | ((periodPass[21] & 0xFF) << 2) | ((periodPass[22] & 0xC0) >>> 6));
@@ -336,7 +336,7 @@ public class TravelCard {
         //LAST USE (BOARDING DATA)
         date1 = (short) (((periodPass[24] & 0xFF) << 6) | ((periodPass[25] & 0xFC) >>> 2));
         time1 = (short) (((periodPass[25] & 0x03) << 9) | ((periodPass[26] & 0xFF) << 1) | ((periodPass[27] & 0x80) >>> 7));
-        boardingDate = Convert.en5145DateAndTime2JavaDate(date1, time1);
+        boardingDate = Utilities.en5145DateAndTime2JavaDate(date1, time1);
         boardingVehicle = (short) (((periodPass[27] & 0x7F) << 7) | (periodPass[28] & 0xFE) >>> 1);
         boardingLocationNumType = (byte) (((periodPass[28] & 0x01) << 1) | ((periodPass[29] & 0x80) >>> 7));
         boardingLocationNum = (short) (((periodPass[29] & 0x7F) << 7) | ((periodPass[30] & 0xFE) >>> 1));
@@ -359,7 +359,7 @@ public class TravelCard {
         //Last value loading
         short date1 = (short) (((storedValue[2] & 0x0F) << 10) | ((storedValue[3] & 0xFF) << 2) | ((storedValue[4] & 0xC0) >>> 6));
         short time1 = (short) (((storedValue[4] & 0x3F) << 5) | ((storedValue[5] & 0xF8) >>> 3));
-        loadingDate = Convert.en5145DateAndTime2JavaDate(date1, time1);
+        loadingDate = Utilities.en5145DateAndTime2JavaDate(date1, time1);
         loadedValue = ((storedValue[5] & 0x07) << 17) | ((storedValue[6] & 0xFF) << 9) | ((storedValue[7] & 0xFF) << 1) | ((storedValue[8] & 0x80) >>> 7);
         loadingOrganisationID = (short) (((storedValue[8] & 0x7F) << 4) | ((storedValue[9] & 0xFE) >>> 1));
         loadingDeviceNumber = (short) (((storedValue[9] & 0x01) << 13) | ((storedValue[10] & 0xFF) << 5) | ((storedValue[11] & 0xF8) >>> 3));
@@ -394,7 +394,7 @@ public class TravelCard {
                     date -= 1;
 
                 //set visible boarding date and time
-                historyFields[historyLen].setTransactionDTime(Convert.en5145DateAndTime2JavaDate(date, time));
+                historyFields[historyLen].setTransactionDTime(Utilities.en5145DateAndTime2JavaDate(date, time));
 
                 //Get group size
                 historyFields[historyLen].setGroupSize((byte) ((historyData[i * 12 + 8] & 0x7C) >>> 2));

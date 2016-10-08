@@ -7,8 +7,7 @@
     <string name="icon_help_title">Info</string>
     <string name="img_desc">Nomral bild</string>
     <string name="dialog_help_title">Resekort läsare</string>
-    <string name="dialog_help_msg">Information kommer här</string>
-
+    <string name="tv_help_text">Vänligen läs HSL Resekortet för att se information</string>
 
     <string-array name="languages_array">
         <item>In English</item>
@@ -67,5 +66,6 @@
     <string name="error_dialog_nfc_message">NFC är ej aktiverad. Gå till inställningar?</string>
     <string name="error_dialog_nfc_btn_no">STÄNG</string>
     <string name="error_dialog_nfc_btn_yes">OK</string>
+    <string name="dialog_help_msg">En lättanvänd app som läser ett HSL Resekort.\n\nUtvecklad av Jebstern</string>
 
 </resources>

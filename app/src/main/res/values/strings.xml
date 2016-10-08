@@ -8,8 +8,8 @@
     <string name="icon_help_title">Info</string>
     <string name="img_desc">Regular image</string>
     <string name="dialog_help_title">Travel Card reader</string>
-    <string name="dialog_help_msg">Description coming sooon&#8230;</string>
-
+    <string name="dialog_help_msg">An easy-to-use app for reading the information of a HSL Travel Card.\n\nDeveloped by Jebstern</string>
+    <string name="tv_help_text">Please read the HSL Travel Card to view its information</string>
 
     <string-array name="languages_array">
         <item>In English</item>

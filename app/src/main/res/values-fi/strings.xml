@@ -7,7 +7,8 @@
     <string name="icon_help_title">Tietoja</string>
     <string name="img_desc">Normikuva</string>
     <string name="dialog_help_title">Matkakortti Lukija</string>
-    <string name="dialog_help_msg">Ohje tulosssa&#8230;</string>
+    <string name="dialog_help_msg">Helppokäyttöinen sovellus jolla voit lukea HSL Matkakortin.\n\nKehittäjä: Jebstern</string>
+    <string name="tv_help_text">Ystävällisesti lue HSL Matkakortti nähdääksesi sen tiedot</string>
 
 
     <string-array name="languages_array">
